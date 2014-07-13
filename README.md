@@ -67,6 +67,7 @@ mysql -u root -p -e 'DROP DATABASE fxa'
 
 The server will automatically re-create it on next use.
 
+
 ## License
 
 MPL 2.0
