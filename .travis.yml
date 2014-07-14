@@ -12,6 +12,11 @@ notifications:
 
 install:
   - npm run-script dumpnpmenv
+  - ls -la /home/travis/.npm
+  - cat /home/travis/.nvm/v0.10.26/etc/npmrc
+  - cat /home/travis/.npmrc
+  - cat /home/travis/.nvm/v0.10.26/etc/npmignore
+  - cat /home/travis/.npm-init.js
   - npm install --no-optional
 
 before_script:
