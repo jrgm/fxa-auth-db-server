@@ -11,6 +11,7 @@ notifications:
     - jrgm@mozilla.com
 
 install:
+  - npm run-script dumpnpmenv
   - npm install --no-optional
 
 before_script:
