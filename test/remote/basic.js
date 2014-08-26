@@ -33,7 +33,7 @@ test(
         t.equal(r.res.statusCode, 200, 'returns a 200')
         t.equal(r.obj.version, pkg.version, 'Version reported is the same a package.json')
         t.equal(r.obj.patchLevel, config.patchLevel, 'Patch level is the same as the one set in config')
-        t.deepEqual(r.obj, { version : pkg.version, patchLevel : config.patchLevel }, 'Object contains no other fields')
+        t.ok(/[a-f0-9]/.test(r.obj.commit), 'commit is a hexadecimal value')
         t.end()
       })
   }

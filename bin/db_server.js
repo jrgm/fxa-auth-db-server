@@ -9,6 +9,8 @@ var config = require('../config')
 var log = require('../log')(config.logLevel, 'db-api')
 var DB = require('../db/mysql')(log, error)
 var pkg = require('../package.json')
+var version = require('../version')
+
 
 var MemoryMonitor = require('../memory_monitor')
 var memoryMonitor = new MemoryMonitor()
@@ -139,8 +141,15 @@ function startServer(db) {
   api.get(
     '/',
     function (req, res, next) {
-      res.send({ version: pkg.version, patchLevel: db.patchLevel })
-      next()
+      version().then(
+        function(result) {
+          result.patchLevel = db.patchLevel
+          res.send(result)
+        },
+        function(err) {
+          log.error({ op: 'getversion', err: err })
+        }
+      ).then(next)
     }
   )
 
